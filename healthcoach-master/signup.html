@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="signup.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f3f6ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.signup-container {
+    width: 350px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.signup-container h2 {
+    margin-bottom: 20px;
+}
+
+.signup-container input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #4a73ff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4eff;
+}
+
+.message {
+    margin-top: 15px;
+}
+
+.message a {
+    color: #1d4eff;
+    text-decoration: none;
+}
+
+        select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    background: white;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="signup-container">
+        <h2>Create Account</h2>
+
+        <form id="signupForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+
+            <input type="number" id="age" placeholder="Age" required min="1" max="120">
+
+            <select id="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <input type="email" id="email" placeholder="Email" required>
+
+            <input type="password" id="password" placeholder="Password" required>
+
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <p class="message">
+            Already have an account? <a href="login.html">Login</a>
+        </p>
+    </div>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let age = document.getElementById("age").value;
+    let gender = document.getElementById("gender").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    if (!name || !age || !gender || !email || !password) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    // Create user object
+    let user = {
+        name: name,
+        age: age,
+        gender: gender,
+        email: email,
+        password: password
+    };
+
+    // Store in local storage
+    localStorage.setItem("userData", JSON.stringify(user));
+
+    alert("Signup Successful!");
+
+    // Redirect to login page
+    window.location.href = "login.html";
+});
+
+    </script>
+</body>
+</html>
